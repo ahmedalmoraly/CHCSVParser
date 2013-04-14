@@ -549,6 +549,8 @@ NSString *const CHCSVErrorDomain = @"com.davedelong.csv";
         
         if ([_stream streamStatus] == NSStreamStatusNotOpen) {
             [_stream open];
+            NSData *data = [@"\357\273\277" dataUsingEncoding:encoding];
+            [_stream write:[data bytes] maxLength:data.length];
         }
         
         NSData *a = [@"a" dataUsingEncoding:_streamEncoding];
